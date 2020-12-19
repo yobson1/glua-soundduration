@@ -166,6 +166,23 @@ local soundDecoders = {
 		end
 
 		return duration
+	end,
+	-- Reference: http://soundfile.sapp.org/doc/WaveFormat/
+	wav = function(buffer)
+		-- Get channels
+		buffer:Seek(22)
+		local channels = buffer:ReadShort()
+
+		-- Get sample rate
+		local sampleRate = buffer:ReadLong()
+
+		-- Get samples
+		buffer:Seek(34)
+		local bitsPerSample = buffer:ReadShort()
+		local divisor = bitsPerSample / 8
+		local samples = (buffer:Size() - 44) / divisor
+
+		return samples / sampleRate / channels
 	end
 }
 
