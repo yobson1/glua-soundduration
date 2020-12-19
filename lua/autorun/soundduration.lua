@@ -190,7 +190,9 @@ function NewSoundDuration(soundPath)
 	local extension = soundPath:GetExtensionFromFilename()
 	if extension and soundDecoders[extension] then
 		local buffer = file.Open(soundPath, "r", "GAME")
-		return soundDecoders[extension](buffer)
+		local result = soundDecoders[extension](buffer)
+		buffer:Close()
+		return result
 	end
 
 	return SoundDuration(soundPath)
