@@ -178,5 +178,3 @@ function NewSoundDuration(soundPath)
 
 	return SoundDuration(soundPath)
 end
-print(SoundDuration("gamemodes/darkrp/content/sound/earthquake.mp3"))
-print(NewSoundDuration("gamemodes/darkrp/content/sound/earthquake.mp3"))
